@@ -1,4 +1,10 @@
-import { Injectable, Logger, BadRequestException, NotFoundException, ForbiddenException } from '@nestjs/common';
+import {
+  Injectable,
+  Logger,
+  BadRequestException,
+  NotFoundException,
+  ForbiddenException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Message } from './entities/message.entity';
@@ -57,7 +63,9 @@ export class ChatService {
 
       // Validación adicional de contenido
       if (!content.trim()) {
-        throw new BadRequestException('El mensaje no puede contener solo espacios en blanco');
+        throw new BadRequestException(
+          'El mensaje no puede contener solo espacios en blanco',
+        );
       }
 
       // Crear la instancia del mensaje
@@ -98,7 +106,10 @@ export class ChatService {
    * @example
    * const messages = await chatService.getProjectMessages('project-uuid', 20);
    */
-  async getProjectMessages(projectId: string, limit: number = 50): Promise<Message[]> {
+  async getProjectMessages(
+    projectId: string,
+    limit: number = 50,
+  ): Promise<Message[]> {
     try {
       const messages = await this.messageRepository.find({
         where: { projectId },
@@ -133,7 +144,10 @@ export class ChatService {
    * @example
    * const hasAccess = await chatService.validateUserProjectAccess(userId, projectId);
    */
-  async validateUserProjectAccess(userId: string, projectId: string): Promise<boolean> {
+  async validateUserProjectAccess(
+    userId: string,
+    projectId: string,
+  ): Promise<boolean> {
     try {
       // Verificar que el proyecto existe
       const project = await this.projectRepository.findOne({
@@ -228,7 +242,10 @@ export class ChatService {
    * @example
    * const deleted = await chatService.cleanOldMessages('project-uuid', 30);
    */
-  async cleanOldMessages(projectId: string, daysOld: number = 30): Promise<number> {
+  async cleanOldMessages(
+    projectId: string,
+    daysOld: number = 30,
+  ): Promise<number> {
     try {
       const cutoffDate = new Date();
       cutoffDate.setDate(cutoffDate.getDate() - daysOld);

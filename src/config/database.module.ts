@@ -19,7 +19,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
         const nodeEnv = configService.get<string>('NODE_ENV') ?? 'development';
 
         const dbHost = configService.get<string>('DB_HOST') ?? 'localhost';
-        const isSslRequired = configService.get<string>('DB_SSL') === 'true' || dbHost.includes('aivencloud');
+        const isSslRequired =
+          configService.get<string>('DB_SSL') === 'true' ||
+          dbHost.includes('aivencloud');
 
         return {
           type: 'mysql',

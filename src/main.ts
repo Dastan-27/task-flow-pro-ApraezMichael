@@ -9,7 +9,8 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   const frontendOrigins = (
-    process.env.FRONTEND_ORIGIN ?? 'http://localhost:5173,http://127.0.0.1:5173,http://localhost:5174,http://127.0.0.1:5174'
+    process.env.FRONTEND_ORIGIN ??
+    'http://localhost:5173,http://127.0.0.1:5173,http://localhost:5174,http://127.0.0.1:5174'
   )
     .split(',')
     .map((origin) => origin.trim())
@@ -46,36 +47,36 @@ async function bootstrap() {
     .setTitle('🚀 TaskFlow Pro API Apraez Michael')
     .setDescription(
       'API completa para gestión de tareas y proyectos con autenticación segura.\n\n' +
-      '## Características\n' +
-      '- ✅ Autenticación con JWT\n' +
-      '- ✅ Roles como módulo independiente en BD (ADMIN, GERENTE, DESARROLLADOR)\n' +
-      '- ✅ Gestión completa de usuarios\n' +
-      '- ✅ Gestión de proyectos\n' +
-      '- ✅ Validación de datos con class-validator\n' +
-      '- ✅ Documentación automática interactiva\n\n' +
-      '## Guía de Prueba en Swagger\n' +
-      '### Paso 1 — Obtener lista de roles\n' +
-      '1. Registrarse: `POST /auth/registro` (se asigna rol DESARROLLADOR)\n' +
-      '2. Login: `POST /auth/login` → copiar el `accessToken`\n' +
-      '3. Autorizar: botón **Authorize** → pegar el token\n' +
-      '4. `GET /roles` → copiar el `id` del rol deseado (ADMIN, GERENTE o DESARROLLADOR)\n\n' +
-      '### Paso 2 — Flujo de usuarios\n' +
-      '5. `POST /users` (ADMIN) → crear usuario con `rolId` opcional\n' +
-      '6. `PATCH /users/:id/rol` (ADMIN) → asignar rol con el `rolId` obtenido en paso 4\n' +
-      '7. `GET /users` (ADMIN / GERENTE) → listar todos los usuarios\n' +
-      '8. `GET /users/perfil` → ver tu propio perfil (cualquier rol)\n' +
-      '9. `GET /users/:id` (ADMIN / GERENTE) → ver usuario por ID\n\n' +
-      '## Roles y Permisos\n' +
-      '| Endpoint | ADMIN | GERENTE | DESARROLLADOR |\n' +
-      '|---|:---:|:---:|:---:|\n' +
-      '| `POST /users` | ✅ | ❌ | ❌ |\n' +
-      '| `GET /users` | ✅ | ✅ | ❌ |\n' +
-      '| `GET /users/perfil` | ✅ | ✅ | ✅ |\n' +
-      '| `GET /users/:id` | ✅ | ✅ | ❌ |\n' +
-      '| `PATCH /users/:id/rol` | ✅ | ❌ | ❌ |\n' +
-      '| `PATCH /users/:id` | ✅ | ❌ | ❌ |\n' +
-      '| `DELETE /users/:id` | ✅ | ❌ | ❌ |\n' +
-      '| `GET /roles` | ✅ | ✅ | ✅ |\n',
+        '## Características\n' +
+        '- ✅ Autenticación con JWT\n' +
+        '- ✅ Roles como módulo independiente en BD (ADMIN, GERENTE, DESARROLLADOR)\n' +
+        '- ✅ Gestión completa de usuarios\n' +
+        '- ✅ Gestión de proyectos\n' +
+        '- ✅ Validación de datos con class-validator\n' +
+        '- ✅ Documentación automática interactiva\n\n' +
+        '## Guía de Prueba en Swagger\n' +
+        '### Paso 1 — Obtener lista de roles\n' +
+        '1. Registrarse: `POST /auth/registro` (se asigna rol DESARROLLADOR)\n' +
+        '2. Login: `POST /auth/login` → copiar el `accessToken`\n' +
+        '3. Autorizar: botón **Authorize** → pegar el token\n' +
+        '4. `GET /roles` → copiar el `id` del rol deseado (ADMIN, GERENTE o DESARROLLADOR)\n\n' +
+        '### Paso 2 — Flujo de usuarios\n' +
+        '5. `POST /users` (ADMIN) → crear usuario con `rolId` opcional\n' +
+        '6. `PATCH /users/:id/rol` (ADMIN) → asignar rol con el `rolId` obtenido en paso 4\n' +
+        '7. `GET /users` (ADMIN / GERENTE) → listar todos los usuarios\n' +
+        '8. `GET /users/perfil` → ver tu propio perfil (cualquier rol)\n' +
+        '9. `GET /users/:id` (ADMIN / GERENTE) → ver usuario por ID\n\n' +
+        '## Roles y Permisos\n' +
+        '| Endpoint | ADMIN | GERENTE | DESARROLLADOR |\n' +
+        '|---|:---:|:---:|:---:|\n' +
+        '| `POST /users` | ✅ | ❌ | ❌ |\n' +
+        '| `GET /users` | ✅ | ✅ | ❌ |\n' +
+        '| `GET /users/perfil` | ✅ | ✅ | ✅ |\n' +
+        '| `GET /users/:id` | ✅ | ✅ | ❌ |\n' +
+        '| `PATCH /users/:id/rol` | ✅ | ❌ | ❌ |\n' +
+        '| `PATCH /users/:id` | ✅ | ❌ | ❌ |\n' +
+        '| `DELETE /users/:id` | ✅ | ❌ | ❌ |\n' +
+        '| `GET /roles` | ✅ | ✅ | ✅ |\n',
     )
     .setVersion('1.0.0')
     .setContact(

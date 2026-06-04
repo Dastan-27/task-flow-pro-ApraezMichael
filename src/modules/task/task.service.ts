@@ -61,14 +61,18 @@ export class TasksService {
     const tareaGuardada = await this.tasksRepository.save(tarea);
 
     if (usuario.email && usuario.email.includes('@')) {
-      const proyectoNombre = tarea.proyecto ? tarea.proyecto.nombre : 'Proyecto no especificado';
-      
-      this.mailService.sendTaskAssignmentNotification(
-        usuario.email,
-        proyectoNombre,
-        tarea.titulo,
-        tarea.estado,
-      ).catch(() => {});
+      const proyectoNombre = tarea.proyecto
+        ? tarea.proyecto.nombre
+        : 'Proyecto no especificado';
+
+      this.mailService
+        .sendTaskAssignmentNotification(
+          usuario.email,
+          proyectoNombre,
+          tarea.titulo,
+          tarea.estado,
+        )
+        .catch(() => {});
     }
 
     return tareaGuardada;
@@ -121,8 +125,8 @@ export class TasksService {
     await this.tasksRepository.remove(tarea);
   }
 
- // ── HU3: Mover tarea desde el tablero Kanban ─────────────────────
-async moverTarea(
+  // ── HU3: Mover tarea desde el tablero Kanban ─────────────────────
+  async moverTarea(
     id: string,
     nuevoEstado: TaskStatus,
     idUsuario: string,
